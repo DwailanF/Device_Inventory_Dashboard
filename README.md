@@ -14,7 +14,7 @@
 <h5>Along with having a detailed updating formula the sheet also implements a custom Options Menu to the Google Sheet. This information can be found on the same line as File, Edit, View & Insert at the end of the toolbar with three separate features:</h5>
 
 
-🔄 Swap Devices:
+<h3>🔄 Swap Devices:</h3>
 
 Needing to exchange / swap out a device for a specific location and nothing else? This option lets you search by the store number or their unique ID. Once the script runs, it populates a simple sleek popup window, which allows you to update the new serial and other device information. There are also validation checks which alleviates human error. 
 
