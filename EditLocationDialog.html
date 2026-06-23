@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Google Sans', Arial, sans-serif;
+      font-size: 13px;
+      background: #F7E2D6;
+      color: #202124;
+      padding: 20px;
+    }
+    .page { display: none; }
+    .page.active { display: block; }
+    .page-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #3D82D4;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid #b0b0b0;
+      margin-bottom: 16px;
+      padding-bottom: 4px;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #3D82D4;
+      border-bottom: 1px solid #b0b0b0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 16px 0 10px;
+      padding-bottom: 4px;
+    }
+    .field { margin-bottom: 14px; }
+    label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: #000000;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-bottom: 4px;
+    }
+    .required-star { color: #9a031e; }
+    .warning-field { border: 1px solid #FFA000 !important; background: #FFF8E1 !important; }
+    input[type="text"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #9E9E9E;
+      border-radius: 6px;
+      font-size: 13px;
+      color: #202124;
+      background: #fff;
+      outline: none;
+    }
+    .readonly-field {
+      background: #f1f3f4;
+      border: 1px solid #9E9E9E;
+      color: #5f6368;
+      cursor: default;
+    }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    textarea { resize: vertical; min-height: 64px; }
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+    }
+    .actions-right { display: flex; gap: 10px; align-items: center; }
+    button {
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      transition: background 0.15s;
+    }
+    .btn-cancel { background: #9a031e; border: 1px solid #4c5760; color: #000000; }
+    .btn-cancel:hover { background: #f71735; }
+    .btn-back { background: #fff; border: 1px solid #9E9E9E; color: #202124; }
+    .btn-back:hover { background: #f1f3f4; }
+    .btn-next { background: #3D82D4; color: #fff; }
+    .btn-next:hover { background: #2D72C4; }
+    .btn-save { background: #76b041; color: #000000; border: 1px solid #4c5760; }
+    .btn-save:hover { background: #6BF75C; }
+    .btn-save:disabled { opacity: 0.55; cursor: not-allowed; }
+    .page-indicator { font-size: 11px; color: #5f6368; }
+    select#devicepw1, select#devicepw2 { padding: 8px 2px; text-align: center; }
+    .toast {
+      display: none;
+      margin-top: 12px;
+      padding: 9px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .toast.success { background: #E8F5E9; color: #375623; border: 1px solid #81c784; display: block; }
+    .toast.error   { background: #FCE4EC; color: #880E4F; border: 1px solid #f48fb1; display: block; }
+    .warn-banner {
+      background: #FFF8E1;
+      border: 1px solid #FFA000;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 11px;
+      color: #7a4f00;
+      margin-bottom: 12px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page 1: Location Details -->
+  <div class="page active" id="page1">
+    <div class="page-title">Location Details</div>
+
+    <div class="warn-banner" id="warnBanner">
+      &#9888; You are editing a sensitive field. Please double-check before saving.
+    </div>
+
+    <div class="field">
+      <label>Business Name</label>
+      <input type="text" id="storename" value="<?= storename ?>" onfocus="warnField(this)" />
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label>Store Number</label>
+        <input type="text" id="storenum" value="<?= storenum ?>" onfocus="warnField(this)" />
+      </div>
+      <div class="field">
+        <label>Merchant ID</label>
+        <input type="text" value="<?= mid ?>" readonly class="readonly-field" />
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label>Regional Manager</label>
+        <input type="text" id="regmanager" value="<?= regmanager ?>" />
+      </div>
+      <div class="field">
+        <label>Location Phone</label>
+        <input type="text" id="phone" value="<?= phone ?>" />
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn-cancel" onclick="google.script.host.close()">Cancel</button>
+      <div class="actions-right">
+        <span class="page-indicator">Page 1 of 3</span>
+        <button class="btn-next" onclick="goNext(1)">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 2: Devices -->
+  <div class="page" id="page2">
+    <div class="section-label">Device 1</div>
+
+    <div class="row2">
+      <div class="field">
+        <label>Model</label>
+        <select id="model1">
+          <option value="">— Select —</option>
+          <option value="RGH9000" <?= model1 == 'RGH9000' ? 'selected' : '' ?>>RGH9000</option>
+          <option value="BPOI9000" <?= model1 == 'BPOI9000' ? 'selected' : '' ?>>BPOI9000</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Serial Number</label>
+        <input type="text" id="serial1" value="<?= serial1 ?>" placeholder="Leave blank to clear" />
+      </div>
+    </div>
+
+    <div class="row3">
+      <div class="field">
+        <label>Admin PW 1</label>
+        <input type="text" id="adminpw1" value="<?= adminpw1 ?>" />
+      </div>
+      <div class="field">
+        <label>Admin PW 2</label>
+        <input type="text" id="adminpw2" value="<?= adminpw2 ?>" />
+      </div>
+      <div class="field">
+        <label>Admin PW 3</label>
+        <input type="text" id="adminpw3" value="<?= adminpw3 ?>" />
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label>Device Password</label>
+        <select id="devicepw1" onchange="updateDropdownStyle()">
+          <option value="0" <?= devicepw1 == '0' ? 'selected' : '' ?>>0</option>
+          <option value="1" <?= devicepw1 == '1' ? 'selected' : '' ?>>1</option>
+          <option value="2" <?= devicepw1 == '2' ? 'selected' : '' ?>>2</option>
+          <option value="3" <?= devicepw1 == '3' ? 'selected' : '' ?>>3</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Download Date</label>
+        <input type="date" id="downloaddate1" value="<?= downloaddate1 ?>" />
+      </div>
+    </div>
+
+    <div class="section-label">Device 2</div>
+
+    <div class="row2">
+      <div class="field">
+        <label>Model</label>
+        <select id="model2">
+          <option value="">— Select —</option>
+          <option value="RGH9000" <?= model2 == 'RGH9000' ? 'selected' : '' ?>>RGH9000</option>
+          <option value="BPOI9000" <?= model2 == 'BPOI9000' ? 'selected' : '' ?>>BPOI9000</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Serial Number</label>
+        <input type="text" id="serial2" value="<?= serial2 ?>" placeholder="Leave blank to clear" />
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label>Device Password</label>
+        <select id="devicepw2" onchange="updateDropdownStyle()">
+          <option value="0" <?= devicepw2 == '0' ? 'selected' : '' ?>>0</option>
+          <option value="1" <?= devicepw2 == '1' ? 'selected' : '' ?>>1</option>
+          <option value="2" <?= devicepw2 == '2' ? 'selected' : '' ?>>2</option>
+          <option value="3" <?= devicepw2 == '3' ? 'selected' : '' ?>>3</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Download Date</label>
+        <input type="date" id="downloaddate2" value="<?= downloaddate2 ?>" />
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn-cancel" onclick="google.script.host.close()">Cancel</button>
+      <div class="actions-right">
+        <span class="page-indicator">Page 2 of 3</span>
+        <button class="btn-back" onclick="goBack(2)">Back</button>
+        <button class="btn-next" onclick="goNext(2)">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 3: Notes & Chain Info -->
+  <div class="page" id="page3">
+    <div class="page-title">Notes & Chain Info</div>
+
+    <div class="field">
+      <label>Notes</label>
+      <textarea id="notes"><?= notes ?></textarea>
+    </div>
+
+    <div class="row3">
+      <div class="field">
+        <label>Chain #</label>
+        <input type="text" id="chainnum" value="<?= chainnum ?>" />
+      </div>
+      <div class="field">
+        <label>Chain Name</label>
+        <input type="text" id="chainname" value="<?= chainname ?>" />
+      </div>
+      <div class="field">
+        <label>Province</label>
+        <input type="text" id="province" value="<?= province ?>" />
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn-cancel" onclick="google.script.host.close()">Cancel</button>
+      <div class="actions-right">
+        <span class="page-indicator">Page 3 of 3</span>
+        <button class="btn-back" onclick="goBack(3)">Back</button>
+        <button class="btn-save" id="saveBtn" onclick="save()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    function warnField(el) {
+      document.getElementById('warnBanner').style.display = 'block';
+      el.classList.add('warning-field');
+    }
+
+    function goNext(page) {
+      if (page === 1) {
+        const bname  = document.getElementById('storename').value.trim();
+        const snum   = document.getElementById('storenum').value.trim();
+        if (!bname || !snum) {
+          showToast('Business Name and Store Number are required.', 'error');
+          return;
+        }
+        if (!/^\d{3}$/.test(snum)) {
+          showToast('Store Number must be exactly 3 digits.', 'error');
+          return;
+        }
+      }
+
+      if (page === 2) {
+        const serialPattern = /^[A-Za-z]{2}\d{5}-[A-Za-z]{2}\d{6}$/;
+        const s1 = document.getElementById('serial1').value.trim();
+        const s2 = document.getElementById('serial2').value.trim();
+        if (s1 && !serialPattern.test(s1)) {
+          showToast('Invalid Device 1 serial format. Expected: XX00000-XX000000', 'error');
+          return;
+        }
+        if (s2 && !serialPattern.test(s2)) {
+          showToast('Invalid Device 2 serial format. Expected: XX00000-XX000000', 'error');
+          return;
+        }
+      }
+
+      document.getElementById('page' + page).classList.remove('active');
+      document.getElementById('page' + (page + 1)).classList.add('active');
+    }
+
+    function goBack(page) {
+      document.getElementById('page' + page).classList.remove('active');
+      document.getElementById('page' + (page - 1)).classList.add('active');
+    }
+
+updateDropdownStyle();
+
+function updateDropdownStyle() {
+      const pw1 = document.getElementById('devicepw1').value;
+      const pw2 = document.getElementById('devicepw2').value;
+      const drop1 = document.getElementById('devicepw1');
+      const drop2 = document.getElementById('devicepw2');
+      const sdpw = {
+        '1': document.getElementById('adminpw1'),
+        '2': document.getElementById('adminpw2'),
+        '3': document.getElementById('adminpw3')
+      };
+
+      // Reset SD PW backgrounds
+      Object.values(sdpw).forEach(function(el) { if(el) el.style.background = '#f1f3f4'; });
+
+      // Dropdown colours
+      if (pw1 === '0') {
+        drop1.style.background = '#FFE0B2';
+      } else if (pw1 === pw2 && pw1 !== '') {
+        drop1.style.background = '#C8E6C9';
+      } else {
+        drop1.style.background = pw1 ? '#FFF9C4' : '#fff';
+      }
+
+      if (pw2 === '0') {
+        drop2.style.background = '#FFE0B2';
+      } else if (pw1 === pw2 && pw2 !== '') {
+        drop2.style.background = '#C8E6C9';
+      } else {
+        drop2.style.background = pw2 ? '#FFF9C4' : '#fff';
+      }
+
+      // SD PW box highlights
+      if (pw1 !== '0' && pw1 !== '' && pw2 !== '0' && pw2 !== '') {
+        if (pw1 === pw2) {
+          if (sdpw[pw1]) sdpw[pw1].style.background = '#C8E6C9';
+        } else {
+          if (sdpw[pw1]) sdpw[pw1].style.background = '#FFF9C4';
+          if (sdpw[pw2]) sdpw[pw2].style.background = '#FFF9C4';
+        }
+      } else {
+        if (pw1 !== '0' && pw1 !== '' && sdpw[pw1]) sdpw[pw1].style.background = '#FFF9C4';
+        if (pw2 !== '0' && pw2 !== '' && sdpw[pw2]) sdpw[pw2].style.background = '#FFF9C4';
+      }
+    }
+
+    function save() {
+      const btn   = document.getElementById('saveBtn');
+      const toast = document.getElementById('toast');
+      toast.className = 'toast';
+      toast.innerHTML = '';
+
+      const form = {
+        storename:     document.getElementById('storename').value.trim(),
+        storenum:      document.getElementById('storenum').value.trim(),
+        regmanager:    document.getElementById('regmanager').value.trim(),
+        phone:         document.getElementById('phone').value.trim(),
+        model1:        document.getElementById('model1').value,
+        serial1:       document.getElementById('serial1').value.trim(),
+        adminpw1:      document.getElementById('adminpw1').value.trim(),
+        adminpw2:      document.getElementById('adminpw2').value.trim(),
+        adminpw3:      document.getElementById('adminpw3').value.trim(),
+        devicepw1:     document.getElementById('devicepw1').value,
+        downloaddate1: document.getElementById('downloaddate1').value,
+        model2:        document.getElementById('model2').value,
+        serial2:       document.getElementById('serial2').value.trim(),
+        devicepw2:     document.getElementById('devicepw2').value,
+        downloaddate2: document.getElementById('downloaddate2').value,
+        notes:         document.getElementById('notes').value.trim(),
+        chainnum:      document.getElementById('chainnum').value.trim(),
+        chainname:     document.getElementById('chainname').value.trim(),
+        province:      document.getElementById('province').value.trim()
+      };
+
+      btn.disabled = true;
+      btn.textContent = 'Saving...';
+
+      google.script.run
+        .withSuccessHandler(function(result) {
+          if (!result.success) {
+            showToast(result.message, 'error');
+            btn.disabled = false;
+            btn.textContent = 'Save Changes';
+            return;
+          }
+          showToast(result.message, 'success');
+          btn.textContent = 'Saved ✓';
+          setTimeout(function() { google.script.host.close(); }, 1500);
+        })
+        .withFailureHandler(function(err) {
+          showToast('Error: ' + err.message, 'error');
+          btn.disabled = false;
+          btn.textContent = 'Save Changes';
+        })
+        .saveEditLocation(<?= rowIndex ?>, form);
+    }
+
+    function showToast(msg, type) {
+      const t = document.getElementById('toast');
+      t.innerHTML = msg;
+      t.className = 'toast ' + type;
+    }
+  </script>
+</body>
+</html>
