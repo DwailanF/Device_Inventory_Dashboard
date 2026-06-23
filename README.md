@@ -3,15 +3,15 @@
 
 <h5>This project was built in GoogleSheets and Google Apps Script. It was built for managing devices that are spread across multiple locations, examples provided are "Fantasy Franchises". Its purpose is for easy, simple tracking, and optimization of current or future inventory.</h5>
 
-💡 Why Was It Built?
+<h1>💡 Why Was It Built?</h1>
 
 
-Having to manage and organize multiple locations is already a hassle and time-consuming, including devices, people and rotation schedules, it can slowly turn into a nightmare. This can slowly lead to a backlog of data being left not updated accurately, and when details are needed immediately in emergencies you don’t have time to play detective or a deep dive into if the information is accurate. This project was produced to resolve this. The nightmare of a sheet after this project becomes a simple user-friendly, multi-validation search engine with guided forms so the data stays clean and allows the sheet to stay tamper-resistent.
+<h5>Having to manage and organize multiple locations is already a hassle, from including devices information, notes, and locations. It can slowly turn into a nightmare. This can gradually lead to a backlog of data being forgotten or rushed. When details are needed immediately, you do not have time to play detective. This project was produced to resolve this. The normally nightmarish datasheet becomes simpler, user-friendly, multi-coordinated search engine. With guided forms, so the data stays clean and tamper-resistant.</h5>
 
-📌  What Does It Do?
+<h1>📌  What Does It Do?</h1>
 
 	
-Along with having a detailed updating formula system the sheet also implements a custom Options Menu to the Google Sheet. (This can be found on the same  line as File, Edit, View & Insert at the end of the toolbar) with three separate features:
+<h5>Along with having a detailed updating formula the sheet also implements a custom Options Menu to the Google Sheet. This information can be found on the same line as File, Edit, View & Insert at the end of the toolbar with three separate features:</h5>
 
 
 🔄 Swap Devices:
