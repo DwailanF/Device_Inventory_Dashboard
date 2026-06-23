@@ -1,7 +1,7 @@
 <h1>📦 Device Inventory Management System</h1>
 
 
-<h3>This project was built in GoogleSheets and Google Apps Script. It was built for managing devices that are spread across multiple locations, examples provided are "Fantasy Franchises". Its purpose is for easy, simple tracking, and optimization of current or future inventory.</h3>
+<h5>This project was built in GoogleSheets and Google Apps Script. It was built for managing devices that are spread across multiple locations, examples provided are "Fantasy Franchises". Its purpose is for easy, simple tracking, and optimization of current or future inventory.</h5>
 
 💡 Why Was It Built?
 
