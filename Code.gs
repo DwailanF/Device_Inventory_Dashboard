@@ -62,7 +62,8 @@ const list = matches.map(function(m) {
 ui.alert('Multiple records found:\n\n' + list + '\n\nSearch again using the exact Record #.');
 }
 
-// ── Show the edit dialog ───────────────────────────────────────────────────
+// Showing the Edit Dialog Html-----
+
 function showEditDialog(rowIndex) {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Records');
   const row   = sheet.getRange(rowIndex, 1, 1, 23).getValues()[0];
@@ -127,6 +128,8 @@ function saveRecord(rowIndex, form) {
 
 // Function for Adding A new location
 
+//calling html Add new location
+
 function NewLocation() {
   const tpl = HtmlService.createTemplateFromFile('AddNewDialog');
   SpreadsheetApp.getUi().showModalDialog(
@@ -153,7 +156,7 @@ for (let i = 0; i < data.length; i++) {
 }
 const newRow = lastRow + 1;
 
-  // Write only to specific columns, leaving formula columns alone
+  
   sheet.getRange(newRow, 1).setValue(form.businessname);   // A
   sheet.getRange(newRow, 2).setValue(form.storenum);       // B
   sheet.getRange(newRow, 3).setValue(form.mid);            // C
@@ -182,7 +185,7 @@ const newRow = lastRow + 1;
 }
 
 
-// ── Edit Location ──────────────────────────────────────────────────────────
+// ── Edit Location ─────────
 
 function EditLocation() {
   const ui    = SpreadsheetApp.getUi();
@@ -243,6 +246,7 @@ function showEditLocationDialog(rowIndex) {
     return '';
   }
 
+//--Html for Edit Location Dialog--
   const tpl = HtmlService.createTemplateFromFile('EditLocationDialog');
   tpl.rowIndex      = rowIndex;
   tpl.storename     = row[0];   // A
