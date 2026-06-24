@@ -239,8 +239,6 @@
     }
 
     function save() {
-
-
       const btn   = document.getElementById('saveBtn');
       const toast = document.getElementById('toast');
       toast.className = 'toast';
@@ -256,35 +254,37 @@
         notes:         document.getElementById('notes').value.trim()
       };
 
-      if (!form.deviceserial1 || !form.deviceserial2) {
-  showToast('Both serial fields are required.', 'error');
-  return;
+      const serialPattern = /^[A-Za-z]{2}\d{5}-[A-Za-z]{2}\d{6}$/;
+
+      if (form.deviceserial1 && !serialPattern.test(form.deviceserial1)) {
+        showToast('Invalid serial format for Device 1. Expected: XX00000-XX000000', 'error');
+        return;
       }
 
-if (!form.deviceserial1 || !form.deviceserial2) {
-  showToast('Both serial fields are required.', 'error');
-  return;
-}
+      if (form.deviceserial2 && !serialPattern.test(form.deviceserial2)) {
+        showToast('Invalid serial format for Device 2. Expected: XX00000-XX000000', 'error');
+        return;
+      }
 
-const serialPattern = /^[A-Za-z]{2}\d{5}-[A-Za-z]{2}\d{6}$/;
-if (!serialPattern.test(form.deviceserial1) || !serialPattern.test(form.deviceserial2)) {
-  showToast('Invalid serial format. Expected: XX00000-XX000000', 'error');
-  return;
-}
-
-if (form.devicepw1 === '' || form.devicepw2 === '') {
-  showToast('Both password fields are required.', 'error');
-  return;
-}
+      if (form.devicepw1 === '' || form.devicepw2 === '') {
+        showToast('Both password fields are required.', 'error');
+        return;
+      }
 
       btn.disabled = true;
       btn.textContent = 'Saving…';
 
       google.script.run
         .withSuccessHandler(function(result) {
-          showToast(result.message, 'success');
-          btn.textContent = 'Saved ✓';
-          setTimeout(function() { google.script.host.close(); }, 1200);
+          if (result.success) {
+            showToast(result.message, 'success');
+            btn.textContent = 'Saved ✓';
+            setTimeout(function() { google.script.host.close(); }, 1200);
+          } else {
+            showToast(result.message, 'error');
+            btn.disabled = false;
+            btn.textContent = 'Save Changes';
+          }
         })
         .withFailureHandler(function(err) {
           showToast('Error: ' + err.message, 'error');
@@ -301,4 +301,4 @@ if (form.devicepw1 === '' || form.devicepw2 === '') {
     }
   </script>
 </body>
-</html> 
+</html>
