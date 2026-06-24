@@ -72,10 +72,15 @@
 
 <h3>🛠️ Built With</h3>
 
-This project was built using the following:
-Google Apps Script
-Google Sheets
-HTML/CSS/JavaScript
+<p>This project was built using the following:</p>
+<ul>
+<li>Google Apps Script</li>
+<li>Google Sheets</li>
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+</ul>
+
 
 
 
