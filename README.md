@@ -30,11 +30,10 @@
 
 
 
+<h1>📊 The Google Sheets</h1>
 
 
-📊 The Google Sheets
-
-The scripts themselves are a user-friendly way to assist the end user(s) from accidentally breaking the “Records Sheet” which is basically the foundation for all the data across the other sheets, eliminating users having to edit this sheet was the best solution to protect its integrity. Below is a brief explanation of each tab:
+<h5>The scripts themselves are a user-friendly way to assist the user(s) from NOT accidentally breaking the “Records Sheet”. Which is the foundation for all the data across the related data storage. Stops users from having to edit this sheet was the best solution to protect its integrity. Below is a brief explanation of each tab:</h5>
 
 
 🗂️ Records
