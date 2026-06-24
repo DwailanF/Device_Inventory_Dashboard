@@ -14,14 +14,14 @@
 <h5>Along with having a detailed updating formula the sheet also implements a custom Options Menu to the Google Sheet. This information can be found on the same line as File, Edit, View & Insert at the end of the toolbar with three separate features:</h5>
 
 
-<h3>🔄 Swap Devices:</h3>
+<h3>🔄 First Feature: Swap Devices</h3>
 
-Needing to exchange / swap out a device for a specific location and nothing else? This option lets you search by the store number or their unique ID. Once the script runs, it populates a simple sleek popup window, which allows you to update the new serial and other device information. There are also validation checks which alleviates human error. 
+<h5>Need to exchange and/or swap out a device for a specific location and nothing else? This option lets you search by the store number or the stores unique ID. Once the script runs, it populates a simple sleek pop-up window, which allows you to update the new serial number along with any other device information. This feature comes with validation checks built in.</h5>
 
 
-➕ Add New Location
+<h3>➕ Second Feature: Add New Location</h3>
 
-Adding a new location is simple and efficient with this clean 3-page form. This form collects everything that is needed including the business name and unique store details. It also checks for duplicates against the current store locations, (with an exception of device serials). The validation kicks in before saving so you don’t end up with messy or inaccurate data, ensuring that the formatting is accurate to the other data already in the “Records Sheet”.
+<h5>Adding a new location is simple and efficient with this clean 3pg form. This form collects everything that is needed including the business name and unique store details. It also checks for duplicates against the current store locations, with an exception of device serials. The validation checks kick in before it saves; so you do not end up with messy or inaccurate data, ensuring that information is accurate to the other data already recorded.</h5>
 
 
 ✏️ Edit Location
