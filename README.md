@@ -54,7 +54,7 @@
 
 <h3>📋 Report</h3>
 
-<p style="line-height: 2;">Based similarly to the overview dashboard, but showing locations instead of just the numbers. . Pick a category from the dropdown and it displays every matching location into a table below showing store info, download dates, current passwords, and notes. It also gives you an idea of how many matches were found (still matches back with the overview dashboard).</p>
+<p style="line-height: 2;">Based similarly to the overview dashboard but, it shows store locations instead of store numbers. You pick a specific category from the dropdown menu. The menu then displays every matching location on a table below. Which now shows store info, download dates, current passwords, and any additional notes. It also gives you an idea of how many matches were found; matching its data back with the overview dashboard.</p>
 
 <h3>🔧 Device Spares</h3>
 
