@@ -22,18 +22,19 @@ function SwapEdit() {
     ui.alert('No records found in the Records sheet.');
     return;
   }
-   const response = ui.prompt(
+
+  const response = ui.prompt(
     'Swap Device S/N',
     'Enter Store # or MID:',
     ui.ButtonSet.OK_CANCEL
   );
 
-    if (response.getSelectedButton() !== ui.Button.OK) return;
+  if (response.getSelectedButton() !== ui.Button.OK) return;
 
   const search = response.getResponseText().trim().toLowerCase();
   if (!search) return;
 
-  const data = sheet.getRange(2, 1, lastRow - 1, 7).getValues();
+  const data = sheet.getRange(2, 1, lastRow - 1, 23).getValues();
 
   const matches = data.reduce(function(acc, row, i) {
     const id     = String(row[1]).toLowerCase();
@@ -50,52 +51,56 @@ function SwapEdit() {
   }
 
   if (matches.length === 1) {
+    const notes = String(matches[0].data[22]).toLowerCase();
+    if (notes.indexOf('clos') !== -1) {
+      ui.alert('This location appears to be closed and cannot be edited.');
+      return;
+    }
     showEditDialog(matches[0].rowIndex);
     return;
   }
 
-  // Multiple matches — prefer open records
-const list = matches.map(function(m) {
-  return '  #' + m.data[0] + ' — ' + m.data[1];
-}).join('\n');
+  // Multiple matches
+  const list = matches.map(function(m) {
+    return '  #' + m.data[0] + ' — ' + m.data[1];
+  }).join('\n');
 
-ui.alert('Multiple records found:\n\n' + list + '\n\nSearch again using the exact Record #.');
+  ui.alert('Multiple records found:\n\n' + list + '\n\nSearch again using the exact Record #.');
 }
 
-// ── Show the edit dialog ───────────────────────────────────────────────────
 function showEditDialog(rowIndex) {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Records');
   const row   = sheet.getRange(rowIndex, 1, 1, 23).getValues()[0];
 
-var downloaddate1 = '';
-if (row[13] instanceof Date) {
-  downloaddate1 = Utilities.formatDate(row[13], Session.getScriptTimeZone(), 'yyyy-MM-dd');
-} else if (row[13]) {
-  downloaddate1 = String(row[13]).substring(0, 10);
-}
+  var downloaddate1 = '';
+  if (row[13] instanceof Date) {
+    downloaddate1 = Utilities.formatDate(row[13], Session.getScriptTimeZone(), 'yyyy-MM-dd');
+  } else if (row[13]) {
+    downloaddate1 = String(row[13]).substring(0, 10);
+  }
 
-var downloaddate2 = '';
-if (row[21] instanceof Date) {
-  downloaddate2 = Utilities.formatDate(row[21], Session.getScriptTimeZone(), 'yyyy-MM-dd');
-} else if (row[21]) {
-  downloaddate2 = String(row[21]).substring(0, 10);
-}
+  var downloaddate2 = '';
+  if (row[21] instanceof Date) {
+    downloaddate2 = Utilities.formatDate(row[21], Session.getScriptTimeZone(), 'yyyy-MM-dd');
+  } else if (row[21]) {
+    downloaddate2 = String(row[21]).substring(0, 10);
+  }
 
   const tpl = HtmlService.createTemplateFromFile('EditDialog');
   tpl.rowIndex       = rowIndex;
   tpl.storename      = row[0];  // A - readonly
   tpl.storenum       = row[1];  // B - readonly
   tpl.mid            = row[2];  // C - readonly
- tpl.sdpw1         = row[8];  // I
-tpl.sdpw2         = row[9];  // J
-tpl.sdpw3         = row[10]; // K
-tpl.deviceserial1 = row[7];  // H
-tpl.devicepw1     = row[11]; // L
-tpl.downloaddate1 = row[13]; // N - use for dateVal1
-tpl.deviceserial2 = row[15]; // P
-tpl.devicepw2     = row[19]; // T
-tpl.downloaddate2 = row[21]; // V - use for dateVal2
-tpl.notes         = row[22] || ''; // W
+  tpl.sdpw1          = row[8];  // I
+  tpl.sdpw2          = row[9];  // J
+  tpl.sdpw3          = row[10]; // K
+  tpl.deviceserial1  = row[7];  // H
+  tpl.devicepw1      = row[11]; // L
+  tpl.downloaddate1  = downloaddate1;
+  tpl.deviceserial2  = row[15]; // P
+  tpl.devicepw2      = row[19]; // T
+  tpl.downloaddate2  = downloaddate2;
+  tpl.notes          = row[22] || ''; // W
 
   SpreadsheetApp.getUi().showModalDialog(
     tpl.evaluate().setWidth(560).setHeight(600),
@@ -103,11 +108,52 @@ tpl.notes         = row[22] || ''; // W
   );
 }
 
+// Save the record
 function saveRecord(rowIndex, form) {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Records');
+  const lastRow = sheet.getLastRow();
+  const allData = sheet.getRange(2, 1, lastRow - 1, 23).getValues();
 
-  if (!form.deviceserial1 || !form.deviceserial2) {
-    return { success: false, message: 'Both serial fields are required.' };
+  const serialPattern = /^[A-Za-z]{2}\d{5}-[A-Za-z]{2}\d{6}$/;
+
+  if (form.deviceserial1 && !serialPattern.test(form.deviceserial1)) {
+    return { success: false, message: 'Invalid serial format for Device 1.' };
+  }
+
+  if (form.deviceserial2 && !serialPattern.test(form.deviceserial2)) {
+    return { success: false, message: 'Invalid serial format for Device 2.' };
+  }
+
+  // Check serial 1 against all records
+  if (form.deviceserial1) {
+    for (var i = 0; i < allData.length; i++) {
+      var checkRow = i + 2;
+      if (checkRow === rowIndex) continue; // skip the record being edited
+      var s1 = String(allData[i][7]).trim();  // H - device serial 1
+      var s2 = String(allData[i][15]).trim(); // P - device serial 2
+      if (s1 === form.deviceserial1 || s2 === form.deviceserial1) {
+        var notes = String(allData[i][22]).toLowerCase(); // W - notes
+        if (notes.indexOf('clos') === -1) {
+          return { success: false, message: 'Serial 1 is already assigned to an active location: ' + allData[i][0] + ' (Store #' + allData[i][1] + ').' };
+        }
+      }
+    }
+  }
+
+  // Check serial 2 against all records
+  if (form.deviceserial2) {
+    for (var j = 0; j < allData.length; j++) {
+      var checkRow2 = j + 2;
+      if (checkRow2 === rowIndex) continue; // skip the record being edited
+      var s1b = String(allData[j][7]).trim();  // H - device serial 1
+      var s2b = String(allData[j][15]).trim(); // P - device serial 2
+      if (s1b === form.deviceserial2 || s2b === form.deviceserial2) {
+        var notes2 = String(allData[j][22]).toLowerCase(); // W - notes
+        if (notes2.indexOf('clos') === -1) {
+          return { success: false, message: 'Serial 2 is already assigned to an active location: ' + allData[j][0] + ' (Store #' + allData[j][1] + ').' };
+        }
+      }
+    }
   }
 
   sheet.getRange(rowIndex, 8).setValue(form.deviceserial1);
@@ -136,24 +182,49 @@ function NewLocation() {
 }
 
 function saveNewLocation(form) {
-const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Records');
-const data = sheet.getRange('A2:W').getValues();
-let lastRow = 1;
-for (let i = 0; i < data.length; i++) {
-  if (data[i][0] !== '' && data[i][1] !== '' && data[i][2] !== '') lastRow = i + 2;
-  if (String(data[i][1]) === String(form.storenum)) {
-    const notes = String(data[i][22] || '').toLowerCase();
-    if (!notes.includes('clos')) {
-      return { success: false, message: 'Store Number ' + form.storenum + ' already exists and is not closed.' };
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Records');
+  const data = sheet.getRange('A2:W').getValues();
+  let lastRow = 1;
+
+  for (let i = 0; i < data.length; i++) {
+    if (data[i][0] !== '' && data[i][1] !== '' && data[i][2] !== '') lastRow = i + 2;
+    if (String(data[i][1]) === String(form.storenum)) {
+      const notes = String(data[i][22] || '').toLowerCase();
+      if (!notes.includes('clos')) {
+        return { success: false, message: 'Store Number ' + form.storenum + ' already exists and is not closed.' };
+      }
+    }
+    if (String(data[i][2]) === String(form.mid)) {
+      return { success: false, message: 'Merchant ID ' + form.mid + ' already exists.' };
+    }
+
+    // Check serial 1 against existing records
+    if (form.serial1) {
+      const s1 = String(data[i][7]).trim();  // H - device serial 1
+      const s2 = String(data[i][15]).trim(); // P - device serial 2
+      if (s1 === form.serial1 || s2 === form.serial1) {
+        const notes = String(data[i][22] || '').toLowerCase();
+        if (!notes.includes('clos')) {
+          return { success: false, message: 'Serial 1 is already assigned to an active location: ' + data[i][0] + ' (Store #' + data[i][1] + ').' };
+        }
+      }
+    }
+
+    // Check serial 2 against existing records
+    if (form.serial2) {
+      const s1 = String(data[i][7]).trim();  // H - device serial 1
+      const s2 = String(data[i][15]).trim(); // P - device serial 2
+      if (s1 === form.serial2 || s2 === form.serial2) {
+        const notes = String(data[i][22] || '').toLowerCase();
+        if (!notes.includes('clos')) {
+          return { success: false, message: 'Serial 2 is already assigned to an active location: ' + data[i][0] + ' (Store #' + data[i][1] + ').' };
+        }
+      }
     }
   }
-  if (String(data[i][2]) === String(form.mid)) {
-    return { success: false, message: 'Merchant ID ' + form.mid + ' already exists.' };
-  }
-}
-const newRow = lastRow + 1;
 
-  // Write only to specific columns, leaving formula columns alone
+  const newRow = lastRow + 1;
+
   sheet.getRange(newRow, 1).setValue(form.businessname);   // A
   sheet.getRange(newRow, 2).setValue(form.storenum);       // B
   sheet.getRange(newRow, 3).setValue(form.mid);            // C
@@ -182,7 +253,7 @@ const newRow = lastRow + 1;
 }
 
 
-// ── Edit Location ──────────────────────────────────────────────────────────
+// Function for Edit Location 
 
 function EditLocation() {
   const ui    = SpreadsheetApp.getUi();
@@ -277,7 +348,6 @@ function saveEditLocation(rowIndex, form) {
   const lastRow = sheet.getLastRow();
   const data = sheet.getRange(3, 1, lastRow - 2, 30).getValues();
 
-
   // Duplicate store number check (excluding current row)
   for (let i = 0; i < data.length; i++) {
     const currentRowIndex = i + 3;
@@ -288,26 +358,36 @@ function saveEditLocation(rowIndex, form) {
         return { success: false, message: 'Store Number ' + form.storenum + ' already exists and is not closed.' };
       }
     }
-  
   }
 
-  // Duplicate serial check (excluding current row)
+  // Duplicate serial 1 check (excluding current row)
   if (form.serial1) {
     for (let i = 0; i < data.length; i++) {
       const currentRowIndex = i + 3;
       if (currentRowIndex === Number(rowIndex)) continue;
-      if (String(data[i][7]).trim() === String(form.serial1).trim()) {
-        return { success: false, message: 'Device 1 serial already exists on another location.' };
+      const s1 = String(data[i][7]).trim();
+      const s2 = String(data[i][15]).trim();
+      if (s1 === form.serial1 || s2 === form.serial1) {
+        const notes = String(data[i][22] || '').toLowerCase();
+        if (!notes.includes('clos')) {
+          return { success: false, message: 'Serial 1 is already assigned to an active location: ' + data[i][0] + ' (Store #' + data[i][1] + ').' };
+        }
       }
-  }
+    }
   }
 
+  // Duplicate serial 2 check (excluding current row)
   if (form.serial2) {
     for (let i = 0; i < data.length; i++) {
       const currentRowIndex = i + 3;
       if (currentRowIndex === Number(rowIndex)) continue;
-      if (String(data[i][15]).trim() === String(form.serial2).trim()) {
-        return { success: false, message: 'Device 2 serial already exists on another location.' };
+      const s1 = String(data[i][7]).trim();
+      const s2 = String(data[i][15]).trim();
+      if (s1 === form.serial2 || s2 === form.serial2) {
+        const notes = String(data[i][22] || '').toLowerCase();
+        if (!notes.includes('clos')) {
+          return { success: false, message: 'Serial 2 is already assigned to an active location: ' + data[i][0] + ' (Store #' + data[i][1] + ').' };
+        }
       }
     }
   }
@@ -334,16 +414,6 @@ function saveEditLocation(rowIndex, form) {
 
   return { success: true, message: form.storename + ' updated successfully!' };
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
