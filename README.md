@@ -43,12 +43,12 @@
 
 <h3>🔍 Lookup Dashboard</h3>
 
-<p style="line-height: 2;">While it is just called “Dashboard” in the google sheet this sheet is basically one long search function, using the two unique identifiers, you can type in 10-digit ID or a 3 digit  Store Number and it instantly pulls up everything for that location, it shows any spare terminals attached to the location. This is basically a quick way to search up data instead of scrolling through the Records sheet and possibly missing what you were looking for.</p>
+<p style="line-height: 2;">While it is just called “Dashboard” in the Google Sheets this sheet is one large search function, using the two unique identifiers. You can type in 10-digit ID or a 3 digit Store Number and it will instantly pull up everything for that location, in addition it shows any spare terminals attached to that location. This is a quick way to search up data instead of scrolling through countless record sheets.</p>
 
 
 <h3>📈 Overview Dashboard</h3>
 
-<p style="line-height: 2;">A quick snapshot view of the entire inventory. Displays summary stats and status across all locations at a glance.</p>
+<p style="line-height: 2;">This dashboard is a quick snapshot of your stores entire inventory. While also displaying the various summary stats across all locations at a glance.</p>
 
 
 
