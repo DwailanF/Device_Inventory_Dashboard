@@ -73,7 +73,7 @@
 
 
 
-<h3>🛠️ Built With</h3>
+<h1>🛠️ Built With</h1>
 
 <p>This project was built using the following:</p>
 <ul>
@@ -87,7 +87,7 @@
 
 
 
-<h3>📋 Setup</h3>
+<h1>📋 Setup</h1>
 
 <p>This project has a very simple setup process:</p>
 
@@ -110,7 +110,7 @@
 
 
 
-<h3>🍿Video</h3>
+<h1>🍿Video</h1>
 
 
 <p style="line-height: 2; text-align: justify;">Just a quick walkthrough video that shows an overview of the entire project, while it doesn’t cover everything you get a general idea of what this project is about and its main focus and features.</p>
