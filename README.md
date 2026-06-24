@@ -1,4 +1,4 @@
-<img width="1186" height="750" alt="image" src="https://github.com/user-attachments/assets/0f4d943c-7e94-4c07-808a-991c0bb1a240" /><h1>📦 Device Inventory Management System</h1>
+<h1>📦 Device Inventory Management System</h1>
 
 
 <p style="line-height: 2;">This project was built in GoogleSheets and Google Apps Script. It was built for managing devices that are spread across multiple locations, examples provided are "Fantasy Franchises". Its purpose is for easy, simple tracking, and optimization of current or future inventory.</p>
