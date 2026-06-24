@@ -24,9 +24,9 @@
 <h5>Adding a new location is simple and efficient with this clean 3pg form. This form collects everything that is needed including the business name and unique store details. It also checks for duplicates against the current store locations, with an exception of device serials. The validation checks kick in before it saves; so you do not end up with messy or inaccurate data, ensuring that information is accurate to the other data already recorded.</h5>
 
 
-✏️ Edit Location
+<h3>✏️ Edit Location</h3>
 
-Needing to change more than the device serials? This is the script for you. It combines the Adding new location script and the Swap location script making a hybrid, best of both worlds, this 3-page form allows you to edit almost  everything, whilst also giving a warning for sensitive location data. The same validation warnings the other scripts have are also present in this script, ensuring that your edits do not cause any discrepancies.
+<h5>Needing to change more than just the device serials? This script is for you. It combines the 'Adding new location' script and the 'Swap locations' script making a hybrid, the best of both worlds. This 3pg form allows you to edit almost everything, whilst also giving a warning for sensitive location data. The same validation checks are also present in this script, ensuring that your edits do not cause any discrepancies.</h5>
 
 
 
