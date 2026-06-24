@@ -11,7 +11,7 @@
 <h1>📌  What Does It Do?</h1>
 
 	
-<p style="line-height: 2;">Along with having a detailed updating formula the sheet also implements a custom Options Menu to the Google Sheet. This information can be found on the same line as File, Edit, View & Insert at the end of the toolbar with three separate features:</p>
+<p style="line-height: 2;">Along with having a detailed and updating formula the sheet also implements a custom 'Options Menu' to the Google Sheet. This can be found on the same line as File, Edit, View & Insert at the end of the toolbar, with three separate features:</p>
 
 
 <h3>🔄 First Feature: Swap Devices</h3>
