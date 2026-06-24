@@ -36,12 +36,12 @@
 <h5>The scripts themselves are a user-friendly way to assist the user(s) from NOT accidentally breaking the “Records Sheet”. Which is the foundation for all the data across the related data storage. Stops users from having to edit this sheet was the best solution to protect its integrity. Below is a brief explanation of each tab:</h5>
 
 
-🗂️ Records
+<h3>🗂️ Records</h3>
 
-The backbone of the entire inventory dashboard,. Every location full details are found here. The Options menu scripts reads from and writes to this sheet exclusively. Formula columns handle auto-calculations as well and therefore eliminates any need to change any details from this sheet itself ensuring less human errors or formulas being removed or misplaced.
+<h5>This is the backbone of the entire inventory dashboard. Every locations complete details are found here. The 'Options menu' scripts reads from and writes to this sheet exclusively. Formula columns handle auto-calculations and will automatically change data across all datasheets/dashboards, making changes quick and simple for its users.</h5>
 
 
-🔍 Lookup Dashboard
+<h3>🔍 Lookup Dashboard</h3>
 
 While it is just called “Dashboard” in the google sheet this sheet is basically one long search function, using the two unique identifiers, you can type in 10-digit ID or a 3 digit  Store Number and it instantly pulls up everything for that location, it shows any spare terminals attached to the location. This is basically a quick way to search up data instead of scrolling through the Records sheet and possibly missing what you were looking for.
 
