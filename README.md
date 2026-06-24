@@ -114,10 +114,13 @@
 
 
 <p style="line-height: 2; text-align: justify;">Just a quick walkthrough video that shows an overview of the entire project, while it doesn’t cover everything you get a general idea of what this project is about and its main focus and features.</p>
+<br>
 
 
 
 https://github.com/user-attachments/assets/a453d2c2-d7c7-4b88-9e66-eb1416d31a70
+
+<br>
 
 <p><em>The video consists of free use audio: Seller by Aylex</em></p>
 
