@@ -66,7 +66,7 @@
 
 <h3>👥 Supervisors List</h3>
 
-<p style="line-height: 2;">A simple reference sheet for store managers and regional managers, their names and other details kept separate for easy access in case of promotions or changes in titles.</p>
+<p style="line-height: 2;">This is a quick simple reference sheet for management, containing their names and title. Any other details are kept separate for personal security, as well as easy access, and in case of any title changes.</p>
 
 
 
