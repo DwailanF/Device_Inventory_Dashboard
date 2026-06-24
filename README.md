@@ -1,12 +1,12 @@
 <h1>📦 Device Inventory Management System</h1>
 
 
-<h5>This project was built in GoogleSheets and Google Apps Script. It was built for managing devices that are spread across multiple locations, examples provided are "Fantasy Franchises". Its purpose is for easy, simple tracking, and optimization of current or future inventory.</h5>
+<h5 style="line-height: 2.0;">This project was built in GoogleSheets and Google Apps Script. It was built for managing devices that are spread across multiple locations, examples provided are "Fantasy Franchises". Its purpose is for easy, simple tracking, and optimization of current or future inventory.</h5>
 
 <h1>💡 Why Was It Built?</h1>
 
 
-<h5>Having to manage and organize multiple locations is already a hassle, from including devices information, notes, and locations. It can slowly turn into a nightmare. This can gradually lead to a backlog of data being forgotten or rushed. When details are needed immediately, you do not have time to play detective. This project was produced to resolve this. The normally nightmarish datasheet becomes simpler, user-friendly, multi-coordinated search engine. With guided forms, so the data stays clean and tamper-resistant.</h5>
+<h5 style="line-height: 2;">Having to manage and organize multiple locations is already a hassle, from including devices information, notes, and locations. It can slowly turn into a nightmare. This can gradually lead to a backlog of data being forgotten or rushed. When details are needed immediately, you do not have time to play detective. This project was produced to resolve this. The normally nightmarish datasheet becomes simpler, user-friendly, multi-coordinated search engine. With guided forms, so the data stays clean and tamper-resistant.</h5>
 
 <h1>📌  What Does It Do?</h1>
 
@@ -16,7 +16,7 @@
 
 <h3>🔄 First Feature: Swap Devices</h3>
 
-<h5>Need to exchange and/or swap out a device for a specific location and nothing else? This option lets you search by the store number or the stores unique ID. Once the script runs, it populates a simple sleek pop-up window, which allows you to update the new serial number along with any other device information. This feature comes with validation checks built in.</h5>
+<h5 style="line-height: 2;">Need to exchange and/or swap out a device for a specific location and nothing else? This option lets you search by the store number or the stores unique ID. Once the script runs, it populates a simple sleek pop-up window, which allows you to update the new serial number along with any other device information. This feature comes with validation checks built in.</h5>
 
 
 <h3>➕ Second Feature: Add New Location</h3>
