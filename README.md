@@ -1,4 +1,4 @@
-<h1>📦 Device Inventory Management System</h1>
+<img width="1186" height="750" alt="image" src="https://github.com/user-attachments/assets/0f4d943c-7e94-4c07-808a-991c0bb1a240" /><h1>📦 Device Inventory Management System</h1>
 
 
 <p style="line-height: 2;">This project was built in GoogleSheets and Google Apps Script. It was built for managing devices that are spread across multiple locations, examples provided are "Fantasy Franchises". Its purpose is for easy, simple tracking, and optimization of current or future inventory.</p>
@@ -38,39 +38,39 @@
 
 <h3>🗂️ Records</h3>
 
-<h5>This is the backbone of the entire inventory dashboard. Every locations complete details are found here. The 'Options menu' scripts reads from and writes to this sheet exclusively. Formula columns handle auto-calculations and will automatically change data across all datasheets/dashboards, making changes quick and simple for its users.</h5>
+<p style="line-height: 2;">This is the backbone of the entire inventory dashboard. Every locations complete details are found here. The 'Options menu' scripts reads from and writes to this sheet exclusively. Formula columns handle auto-calculations and will automatically change data across all datasheets/dashboards, making changes quick and simple for its users.</p>
 
 
 <h3>🔍 Lookup Dashboard</h3>
 
-While it is just called “Dashboard” in the google sheet this sheet is basically one long search function, using the two unique identifiers, you can type in 10-digit ID or a 3 digit  Store Number and it instantly pulls up everything for that location, it shows any spare terminals attached to the location. This is basically a quick way to search up data instead of scrolling through the Records sheet and possibly missing what you were looking for.
+<p style="line-height: 2;">While it is just called “Dashboard” in the google sheet this sheet is basically one long search function, using the two unique identifiers, you can type in 10-digit ID or a 3 digit  Store Number and it instantly pulls up everything for that location, it shows any spare terminals attached to the location. This is basically a quick way to search up data instead of scrolling through the Records sheet and possibly missing what you were looking for.</p>
 
 
-📈 Overview Dashboard
+<h3>📈 Overview Dashboard</h3>
 
-A quick snapshot view of the entire inventory. Displays summary stats and status across all locations at a glance.
-
-
-
-📋 Report
-
-Based similarly to the overview dashboard, but showing locations instead of just the numbers. . Pick a category from the dropdown and it displays every matching location into a table below showing store info, download dates, current passwords, and notes. It also gives you an idea of how many matches were found (still matches back with the overview dashboard).
-
-🔧 Device Spares
-
-A simple sheet that tracks spare terminals across locations. It also includes a simple search for a device to see which location it belongs to, also includes its availability and other model type in the sheet itself. This information is also shown in the Lookup Dashboard. 
-
-📃 Lists
-
-This sheet basically holds the dropdown information for the Reports sheet. Should be hidden and not edited as you would need to edit all the formulas in the Reports sheet as well to match.
-
-👥 Supervisors List
-
-A simple reference sheet for store managers and regional managers, their names and other details kept separate for easy access in case of promotions or changes in titles.
+<p style="line-height: 2;">A quick snapshot view of the entire inventory. Displays summary stats and status across all locations at a glance.</p>
 
 
 
-🛠️ Built With
+<h3>📋 Report</h3>
+
+<p style="line-height: 2;">Based similarly to the overview dashboard, but showing locations instead of just the numbers. . Pick a category from the dropdown and it displays every matching location into a table below showing store info, download dates, current passwords, and notes. It also gives you an idea of how many matches were found (still matches back with the overview dashboard).</p>
+
+<h3>🔧 Device Spares</h3>
+
+<p style="line-height: 2;">A simple sheet that tracks spare terminals across locations. It also includes a simple search for a device to see which location it belongs to, also includes its availability and other model type in the sheet itself. This information is also shown in the Lookup Dashboard. </p>
+
+<h3>📃 Lists</h3>
+
+<p style="line-height: 2;">This sheet basically holds the dropdown information for the Reports sheet. Should be hidden and not edited as you would need to edit all the formulas in the Reports sheet as well to match.</p>
+
+<h3>👥 Supervisors List</h3>
+
+<p style="line-height: 2;">A simple reference sheet for store managers and regional managers, their names and other details kept separate for easy access in case of promotions or changes in titles.</p>
+
+
+
+<h3>🛠️ Built With</h3>
 
 This project was built using the following:
 Google Apps Script
