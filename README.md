@@ -1,39 +1,39 @@
 <h1>📦 Device Inventory Management System</h1>
 
 
-<h5 style="line-height: 2.0;">This project was built in GoogleSheets and Google Apps Script. It was built for managing devices that are spread across multiple locations, examples provided are "Fantasy Franchises". Its purpose is for easy, simple tracking, and optimization of current or future inventory.</h5>
+<p style="line-height: 2;">This project was built in GoogleSheets and Google Apps Script. It was built for managing devices that are spread across multiple locations, examples provided are "Fantasy Franchises". Its purpose is for easy, simple tracking, and optimization of current or future inventory.</p>
 
 <h1>💡 Why Was It Built?</h1>
 
 
-<h5 style="line-height: 2;">Having to manage and organize multiple locations is already a hassle, from including devices information, notes, and locations. It can slowly turn into a nightmare. This can gradually lead to a backlog of data being forgotten or rushed. When details are needed immediately, you do not have time to play detective. This project was produced to resolve this. The normally nightmarish datasheet becomes simpler, user-friendly, multi-coordinated search engine. With guided forms, so the data stays clean and tamper-resistant.</h5>
+<p style="line-height: 2;">Having to manage and organize multiple locations is already a hassle, from including devices information, notes, and locations. It can slowly turn into a nightmare. This can gradually lead to a backlog of data being forgotten or rushed. When details are needed immediately, you do not have time to play detective. This project was produced to resolve this. The normally nightmarish datasheet becomes simpler, user-friendly, multi-coordinated search engine. With guided forms, so the data stays clean and tamper-resistant.</p>
 
 <h1>📌  What Does It Do?</h1>
 
 	
-<h5>Along with having a detailed updating formula the sheet also implements a custom Options Menu to the Google Sheet. This information can be found on the same line as File, Edit, View & Insert at the end of the toolbar with three separate features:</h5>
+<p style="line-height: 2;">Along with having a detailed updating formula the sheet also implements a custom Options Menu to the Google Sheet. This information can be found on the same line as File, Edit, View & Insert at the end of the toolbar with three separate features:</p>
 
 
 <h3>🔄 First Feature: Swap Devices</h3>
 
-<h5 style="line-height: 2;">Need to exchange and/or swap out a device for a specific location and nothing else? This option lets you search by the store number or the stores unique ID. Once the script runs, it populates a simple sleek pop-up window, which allows you to update the new serial number along with any other device information. This feature comes with validation checks built in.</h5>
+<p style="line-height: 2;">Need to exchange and/or swap out a device for a specific location and nothing else? This option lets you search by the store number or the stores unique ID. Once the script runs, it populates a simple sleek pop-up window, which allows you to update the new serial number along with any other device information. This feature comes with validation checks built in.</p>
 
 
 <h3>➕ Second Feature: Add New Location</h3>
 
-<h5>Adding a new location is simple and efficient with this clean 3pg form. This form collects everything that is needed including the business name and unique store details. It also checks for duplicates against the current store locations, with an exception of device serials. The validation checks kick in before it saves; so you do not end up with messy or inaccurate data, ensuring that information is accurate to the other data already recorded.</h5>
+<p style="line-height: 2;">Adding a new location is simple and efficient with this clean 3pg form. This form collects everything that is needed including the business name and unique store details. It also checks for duplicates against the current store locations, with an exception of device serials. The validation checks kick in before it saves; so you do not end up with messy or inaccurate data, ensuring that information is accurate to the other data already recorded.</p>
 
 
 <h3>✏️Third Feature: Edit Location</h3>
 
-<h5>Needing to change more than just the device serials? This script is for you. It combines the 'Adding new location' script and the 'Swap locations' script making a hybrid, the best of both worlds. This 3pg form allows you to edit almost everything, whilst also giving a warning for sensitive location data. The same validation checks are also present in this script, ensuring that your edits do not cause any discrepancies.</h5>
+<p style="line-height: 2;">Needing to change more than just the device serials? This script is for you. It combines the 'Adding new location' script and the 'Swap locations' script making a hybrid, the best of both worlds. This 3pg form allows you to edit almost everything, whilst also giving a warning for sensitive location data. The same validation checks are also present in this script, ensuring that your edits do not cause any discrepancies.</p>
 
 
 
 <h1>📊 The Google Sheets</h1>
 
 
-<h5>The scripts themselves are a user-friendly way to assist the user(s) from NOT accidentally breaking the “Records Sheet”. Which is the foundation for all the data across the related data storage. Stops users from having to edit this sheet was the best solution to protect its integrity. Below is a brief explanation of each tab:</h5>
+<p style="line-height: 2;">The scripts themselves are a user-friendly way to assist the user(s) from NOT accidentally breaking the “Records Sheet”. Which is the foundation for all the data across the related data storage. Stops users from having to edit this sheet was the best solution to protect its integrity. Below is a brief explanation of each tab:</p>
 
 
 <h3>🗂️ Records</h3>
