@@ -58,11 +58,11 @@
 
 <h3>🔧 Device Spares</h3>
 
-<p style="line-height: 2;">A simple sheet that tracks spare terminals across locations. It also includes a simple search for a device to see which location it belongs to, also includes its availability and other model type in the sheet itself. This information is also shown in the Lookup Dashboard. </p>
+<p style="line-height: 2;">A simple sheet that tracks any spare terminals location across all store locations. It also includes a simple search for devices to see which location it belongs too. This shows its availability and other important model information included with the sheet itself. This information can also be shown in the Lookup Dashboard. </p>
 
 <h3>📃 Lists</h3>
 
-<p style="line-height: 2;">This sheet basically holds the dropdown information for the Reports sheet. Should be hidden and not edited as you would need to edit all the formulas in the Reports sheet as well to match.</p>
+<p style="line-height: 2;">This sheet holds the dropdown menus information for the reports sheet. This should be hidden and not edited as you would need to edit all the formulas in the reports sheets as well in order for them to match.</p>
 
 <h3>👥 Supervisors List</h3>
 
