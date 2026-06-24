@@ -8,6 +8,8 @@
 
 <p style="line-height: 2;">Having to manage and organize multiple locations is already a hassle, from including devices information, notes, and locations. It can slowly turn into a nightmare. This can gradually lead to a backlog of data being forgotten or rushed. When details are needed immediately, you do not have time to play detective. This project was produced to resolve this. The normally nightmarish datasheet becomes simpler, user-friendly, multi-coordinated search engine. With guided forms, so the data stays clean and tamper-resistant.</p>
 
+<p style="line-height: 2;">Each script allows you to add devices from one closed locations to another location. Note it will not let you pull from open locations, unless you remove it from that location or mark the location for closure prior to adding it to the new location as the script still views it as in use </p>
+
 <h1>📌  What Does It Do?</h1>
 
 	
