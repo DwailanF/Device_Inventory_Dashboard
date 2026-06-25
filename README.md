@@ -106,7 +106,7 @@
 <li>Navigate to File → Save As Google Sheets</li>
 <li>Refresh the page</li>
 <li>Navigate to Extensions → Apps Script</li>
-<li>Paste in the other files (Code.gs and the HTML dialog files. Note that each file must be labelled exactly as seen.Ensure all html files are saved as .html and not as .txt files)</li>
+<li>Paste in the other files (Code.gs and the HTML dialog files. Note that each file must be labelled exactly as seen. Ensure all html files are saved as .html and not as .txt files)</li>
 <li>Save and refresh the sheet</li>
 <li>An “Options” menu will appear in the menu bar</li>
 <li>Click on the Options and you will see the dropdown for the 3 scripts ready to use.</li>
